@@ -12,8 +12,6 @@ DROP TABLE IF EXISTS Photos;
 
 DROP TABLE IF EXISTS Characteristics_Product;
 
-DROP TABLE IF EXISTS Characteristics_Review;
-
 CREATE TABLE Product (
   product_id INT PRIMARY KEY
 );
@@ -31,20 +29,23 @@ CREATE TABLE Reviews (
   photos,
 );
 
--- What to do for helpfulness and photos?
+-- How to link things
 
 CREATE TABLE Helpfulness (
-
+  review_id INT PRIMARY KEY,
+  positive INT,
+  negative INT
 );
 
 CREATE TABLE Photos (
-
+  review_id INT PRIMARY KEY,
+  url TEXT,
 );
 
 CREATE TABLE Characteristics_Product (
-
-);
-
-CREATE TABLE Characteristics_Review (
-
+  review_id INT PRIMARY KEY,
+  fit TEXT,
+  length TEXT,
+  comfort TEXT,
+  quality TEXT,
 );
