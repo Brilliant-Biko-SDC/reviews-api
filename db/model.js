@@ -26,7 +26,7 @@ const reviewSchema = new mongoose.Schema({
     maxLength: 999,
   },
   date: {
-    // what to do here?
+    type: Date,
   },
   reviewer_name: {
     type: String,
