@@ -18,7 +18,6 @@ CREATE TABLE Product (
 
 CREATE TABLE Reviews (
   review_id INT PRIMARY KEY AUTO_INCREMENT,
-  product_id INT FOREIGN KEY,
   rating INT,
   recommend BOOLEAN,
   body VARCHAR(999),
@@ -26,24 +25,24 @@ CREATE TABLE Reviews (
   reported BOOLEAN,
   reviewer_name VARCHAR (30),
   email VARCHAR(30),
-  helpfulness INT
+  helpfulness INT,
+  FOREIGN KEY (product_id),
+  REFERENCES Product (product_id)
 );
-
--- Check foreign key syntax
--- How to link things
 
 CREATE TABLE Photos (
   photo_id INT PRIMARY KEY AUTO_INCREMENT,
-  review_id INT FOREIGN KEY,
   url TEXT
+  FOREIGN KEY (review_id),
+  REFERENCES Reviews (review_id)
 );
 
 CREATE TABLE Characteristics_Product (
   review_id INT PRIMARY KEY,
-  fit INT,
-  length INT,
-  comfort INT,
-  quality INT
+  -- fit INT,
+  -- length INT,
+  -- comfort INT,
+  -- quality INT
 );
 
 -- Use this table to keep track of what chars a product has
@@ -51,10 +50,10 @@ CREATE TABLE Characteristics_Product (
 
 CREATE TABLE Characteristics_Review (
   review_id INT PRIMARY KEY,
-  fit INT,
-  length INT,
-  comfort INT,
-  quality INT
+  -- fit INT,
+  -- length INT,
+  -- comfort INT,
+  -- quality INT
 );
 
 -- Join table: two foreign keys
