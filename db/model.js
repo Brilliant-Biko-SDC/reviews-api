@@ -32,6 +32,9 @@ const reviewSchema = new mongoose.Schema({
     type: String,
     maxLength: 60,
   },
+  reported: {
+    type: Boolean
+  }
   helpfulness: {
     type: Number,
   },
