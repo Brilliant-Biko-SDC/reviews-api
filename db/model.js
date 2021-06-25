@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
+  product_id: {
+    type: Number,
+  },
   review_id: {
     type: Number,
   },
@@ -60,12 +63,13 @@ const productSchema = new mongoose.Schema({
     true: Number,
     false: Number,
   },
-  // This will not be the same for every product
+  // characteristics will not be the same for every product
   characteristics: [{}],
+  //
   reviews: [{ type: reviewSchema }],
 });
+
 //exports is a property of all module
 //writes this code module.exports = {}
-
 module.exports.product = productSchema;
 module.exports.review = reviewSchema;
