@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
-  review_id: {
+  id: {
     type: Number,
   },
   product_id: {
@@ -51,6 +51,18 @@ const reviewSchema = new mongoose.Schema({
   characteristics: [{}],
 });
 
+const photosSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+  },
+  review_id: {
+    type: Number,
+  },
+  url: {
+    type: String,
+  }
+})
+
 const productSchema = new mongoose.Schema({
   product_id: Number,
   ratings: {
@@ -74,3 +86,4 @@ const productSchema = new mongoose.Schema({
 //writes this code module.exports = {}
 module.exports.product = productSchema;
 module.exports.review = reviewSchema;
+module.exports.photos = photosSchema;

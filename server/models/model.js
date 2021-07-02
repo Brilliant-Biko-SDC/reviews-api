@@ -3,6 +3,7 @@ const schemas = require("./../../database/model.js");
 
 const Product = mongoose.model("Product", schemas.product);
 const Review = mongoose.model("Review", schemas.review);
+const Photos = mongoose.model("Photos", schemas.photos);
 // const Product = mongoose.model("productSchema", "./../db/model.js");
 //first input to mongoose.connect is a uri with the last part of the uri being the database
 // mongoose.connect(
@@ -28,6 +29,13 @@ const connectToMongo = async () => {
       useUnifiedTopology: true
     });
     console.log("connected");
+    const photos = await Photos.find(
+      {review_id: 5}
+    );
+    await Review.updateOne(
+      { id: 5 },
+      { photos: photos }
+    );
   } catch (error) {
       console.log(error)
   }
