@@ -63,30 +63,53 @@ const photosSchema = new mongoose.Schema({
   },
 });
 
-const characteristicsSchema = new mongoose.Schema({});
-
-const reviewMetaSchema = new mongoose.Schema({
-  product_id: Number,
-  ratings: {
-    1: Number,
-    2: Number,
-    3: Number,
-    4: Number,
-    5: Number,
+const characteristicTypeSchema = new mongoose.Schema({
+  id: {
+    type: Number,
   },
-  recommended: {
-    true: Number,
-    false: Number,
+  product_id: {
+    type: Number,
   },
-  // characteristics will not be the same for every product
-  characteristics: [{}],
-  //
-  reviews: [{ type: reviewSchema }],
+  name: {
+    type: String,
+  },
 });
+
+const characteristicValueSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+  },
+  characteristic_id: {
+    type: Number,
+  },
+  value: {
+    type: Number,
+  },
+});
+
+// const reviewMetaSchema = new mongoose.Schema({
+//   product_id: Number,
+//   ratings: {
+//     1: Number,
+//     2: Number,
+//     3: Number,
+//     4: Number,
+//     5: Number,
+//   },
+//   recommended: {
+//     true: Number,
+//     false: Number,
+//   },
+//   // characteristics will not be the same for every product
+//   characteristics: [{}],
+//   //
+//   reviews: [{ type: reviewSchema }],
+// });
 
 //exports is a property of all module
 //writes this code module.exports = {}
-module.exports.reviewMeta = reviewMetaSchema;
+// module.exports.reviewMeta = reviewMetaSchema;
 module.exports.review = reviewSchema;
 module.exports.photos = photosSchema;
-module.exports.characteristics = characteristicsSchema;
+module.exports.characteristicTypes = characteristicTypeSchema;
+module.exports.characteristicValues = characteristicValueSchema;
