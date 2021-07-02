@@ -7,7 +7,7 @@ const router = Router();
 router.get("/:productid", controller.reviews.get);
 // localhost:3158/api/reviews/21678
 
-// router.get("/meta/:productid", controller.meta.get);
+router.get("/meta/:productid", controller.reviewsMeta.get);
 
 // router.post('/:productid', controller.reviews.post);
 
