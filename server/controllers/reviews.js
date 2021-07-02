@@ -1,7 +1,9 @@
+const model = require("./../models");
+
 const review = {
-  get: (req, res) => {
-    console.log("res", res);
-    console.log("req", req);
+  get: async (req, res) => {
+    const reviews = await model.reviews.get(parseInt(req.params.productid));
+    res.send(reviews);
   },
 };
 

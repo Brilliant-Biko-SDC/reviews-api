@@ -37,7 +37,7 @@ const reviewSchema = new mongoose.Schema({
   },
   //don't have reviewer email
   reported: {
-    type: Boolean
+    type: Boolean,
   },
   helpfulness: {
     type: Number,
@@ -60,8 +60,10 @@ const photosSchema = new mongoose.Schema({
   },
   url: {
     type: String,
-  }
-})
+  },
+});
+
+const characteristicsSchema = new mongoose.Schema({});
 
 const productSchema = new mongoose.Schema({
   product_id: Number,
@@ -87,3 +89,4 @@ const productSchema = new mongoose.Schema({
 module.exports.product = productSchema;
 module.exports.review = reviewSchema;
 module.exports.photos = photosSchema;
+module.exports.characteristics = characteristicsSchema;

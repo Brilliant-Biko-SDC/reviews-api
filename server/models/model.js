@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const schemas = require("./../../database/model.js");
+// const schemas = require("./../../database/model.js");
 
-const Product = mongoose.model("Product", schemas.product);
-const Review = mongoose.model("Review", schemas.review);
-const Photos = mongoose.model("Photos", schemas.photos);
+// const Product = mongoose.model("Product", schemas.product);
+// const Review = mongoose.model("Review", schemas.review);
+// const Photos = mongoose.model("Photos", schemas.photos);
 
 const connectToMongo = async () => {
   try {
