@@ -12,12 +12,6 @@ const CharacteristicValues = mongoose.model(
   schemas.characteristicValues
 );
 
-// const getCharacteristicValues = async (characteristicTypes) => {
-//   await CharacteristicValues.find({
-//     product_id: productid,
-//   });
-// };
-
 const reviewMeta = {
   get: async (productid) => {
     try {
@@ -55,7 +49,10 @@ const reviewMeta = {
       // Create object to store characteristic meta
       const characteristics = {};
 
+      const characteristicIDsArray = [];
+
       // Get characteristic types
+      // Query the characteristic-types collection by product_id
       const getCharacteristicTypes = async (productid) => {
         // // Create array to store given product's characteristic types
         // let characteristicTypesArray = [];
@@ -67,11 +64,12 @@ const reviewMeta = {
         });
         // Iterate through characteristic type array to populate characteristics object
         for (let i = 0; i < characteristicTypesArray.length; i++) {
-          console.log("test", characteristicTypesArray[i]);
           characteristics[characteristicTypesArray[i].name] = {
             id: characteristicTypesArray[i].id,
             value: 0,
           };
+          // Get an array of all characteristic ids
+          characteristicIDsArray.push(characteristicTypesArray[i]);
         }
         return characteristicTypesArray;
       };
@@ -79,6 +77,31 @@ const reviewMeta = {
       const populateCharacteristicsObject = await getCharacteristicTypes(
         productid
       );
+
+      let characteristicValueSum = 0;
+
+      const getCharacteristicValues = async (characteristicID) => {
+        const characteristicValuesArray = await CharacteristicValues.find({
+          characteristic_id: characteristicID,
+        });
+        return characteristicValuesArray;
+      };
+      // For each characteristic type, query the characteristic-values
+      // collection by characteristic id
+      for (let i = 0; i < characteristicIDsArray.length; i++) {
+        const findValues = await getCharacteristicValues(
+          characteristicIDsArray[i].id
+        );
+
+        characteristicValueSum = 0;
+        let name;
+        for (let j = 0; j < findValues.length; j++) {
+          characteristicValueSum += findValues[j].value;
+        }
+        let average = characteristicValueSum / findValues.length;
+        name = characteristicIDsArray[i].name;
+        characteristics[name].value = average.toString();
+      }
 
       // Add productid, ratings, recommended, and characteristics to meta object
       meta.product_id = productid.toString();
@@ -91,12 +114,5 @@ const reviewMeta = {
     }
   },
 };
-
-// Query the characteristic-types collection by product_id
-
-// For each characteristic type, query the characteristic-values
-// collection by characteristic id
-
-// Find the averages
 
 module.exports = reviewMeta;
