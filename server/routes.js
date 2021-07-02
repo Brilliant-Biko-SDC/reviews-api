@@ -7,8 +7,8 @@ const router = Router();
 router.get("/:productid", controller.reviews.get);
 // localhost:3158/api/reviews/21678
 
-// router.post('/:productid', controller.reviews.post);
+// router.get("/meta/:productid", controller.meta.get);
 
-// router.get('/meta/:productid', controller.meta.get);
+// router.post('/:productid', controller.reviews.post);
 
 module.exports = router;

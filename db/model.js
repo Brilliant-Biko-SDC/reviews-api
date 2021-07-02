@@ -65,7 +65,7 @@ const photosSchema = new mongoose.Schema({
 
 const characteristicsSchema = new mongoose.Schema({});
 
-const productSchema = new mongoose.Schema({
+const reviewMetaSchema = new mongoose.Schema({
   product_id: Number,
   ratings: {
     1: Number,
@@ -86,7 +86,7 @@ const productSchema = new mongoose.Schema({
 
 //exports is a property of all module
 //writes this code module.exports = {}
-module.exports.product = productSchema;
+module.exports.reviewMeta = reviewMetaSchema;
 module.exports.review = reviewSchema;
 module.exports.photos = photosSchema;
 module.exports.characteristics = characteristicsSchema;
