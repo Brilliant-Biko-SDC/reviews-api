@@ -1,14 +1,17 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
-  product_id: {
+  review_id: {
     type: Number,
   },
-  review_id: {
+  product_id: {
     type: Number,
   },
   rating: {
     type: Number,
+  },
+  date: {
+    type: Date,
   },
   summary: {
     type: String,
@@ -28,16 +31,14 @@ const reviewSchema = new mongoose.Schema({
     minLength: 3,
     maxLength: 999,
   },
-  date: {
-    type: Date,
-  },
   reviewer_name: {
     type: String,
     maxLength: 60,
   },
+  //don't have reviewer email
   reported: {
     type: Boolean
-  }
+  },
   helpfulness: {
     type: Number,
   },
