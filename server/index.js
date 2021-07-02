@@ -15,6 +15,8 @@ app.use("/api/reviews", routes);
 
 // app.use("/api/reviews/meta", routes);
 
+app.post("/api/reviews", routes);
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

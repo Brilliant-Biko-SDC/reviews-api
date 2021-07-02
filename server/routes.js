@@ -1,5 +1,5 @@
 const controller = require("./controllers");
-const { Router } = require("express");
+const Router = require("express");
 
 const router = Router();
 
@@ -9,6 +9,6 @@ router.get("/:productid", controller.reviews.get);
 
 router.get("/meta/:productid", controller.reviewsMeta.get);
 
-// router.post('/:productid', controller.reviews.post);
+router.post("/:productid", controller.reviews.post);
 
 module.exports = router;

@@ -14,6 +14,15 @@ const review = {
       console.log(error);
     }
   },
+  post: async (productid) => {
+    try {
+      const newReview = new Review();
+      const review = await newReview.save();
+      return review;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 module.exports = review;
