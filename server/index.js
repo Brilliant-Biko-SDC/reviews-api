@@ -4,6 +4,11 @@ const app = express();
 const port = 3158;
 const routes = require("./routes.js");
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  return next();
+});
+
 app.use(express.json());
 
 app.use("/api/reviews", routes);

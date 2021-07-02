@@ -38,13 +38,28 @@ const reviewMeta = {
           recommended.false++;
         }
       }
+      let amountOfRatings = 0;
+      amountOfRatings +=
+        ratings["1"] +
+        ratings["2"] +
+        ratings["3"] +
+        ratings["4"] +
+        ratings["5"];
+      let sum =
+        ratings["1"] +
+        ratings["2"] * 2 +
+        ratings["3"] * 3 +
+        ratings["4"] * 4 +
+        ratings["5"] * 5;
+      let avg = (sum / amountOfRatings).toFixed(1);
+
       ratings["1"] = ratings["1"].toString();
       ratings["2"] = ratings["2"].toString();
       ratings["3"] = ratings["3"].toString();
       ratings["4"] = ratings["4"].toString();
       ratings["5"] = ratings["5"].toString();
-      recommended.true = recommended.true.toString();
-      recommended.false = recommended.false.toString();
+      // recommended.true = recommended.true.toString();
+      // recommended.false = recommended.false.toString();
 
       // Create object to store characteristic meta
       const characteristics = {};
@@ -104,9 +119,19 @@ const reviewMeta = {
       }
 
       // Add productid, ratings, recommended, and characteristics to meta object
+      // avg: 3.6,
+      // totalReviews: 20,
+      // recommended: "87%",
+      meta.avg = avg;
+      meta.totalReviews = reviews.length;
       meta.product_id = productid.toString();
       meta.ratings = ratings;
-      meta.recommended = recommended;
+      meta.recommendedTotals = recommended;
+      meta.recommended =
+        Math.round(
+          (recommended["true"] / (recommended["true"] + recommended["false"])) *
+            100
+        ).toString() + "%";
       meta.characteristics = characteristics;
       return meta;
     } catch (error) {
