@@ -24,21 +24,19 @@ const Photos = mongoose.model("Photos", schemas.photos);
 
 const connectToMongo = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/reviews', {
+    await mongoose.connect("mongodb://localhost:27017/reviews", {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     });
     console.log("connected");
-    const photos = await Photos.find(
-      {review_id: 5}
-    );
-    await Review.updateOne(
-      { id: 5 },
-      { photos: photos }
-    );
+    for (let i = 1; i <= 5774952; i++) {
+      const photos = await Photos.find({ review_id: i });
+      await Review.updateOne({ id: i }, { photos: photos });
+      console.log(`review_id ${i} updated`);
+    }
   } catch (error) {
-      console.log(error)
+    console.log(error);
   }
-}
+};
 
-connectToMongo()
+connectToMongo();
