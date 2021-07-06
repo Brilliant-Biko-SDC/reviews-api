@@ -3,9 +3,11 @@ const mongoose = require("mongoose");
 const reviewSchema = new mongoose.Schema({
   id: {
     type: Number,
+    index: true,
   },
   product_id: {
     type: Number,
+    index: true,
   },
   rating: {
     type: Number,
@@ -66,9 +68,11 @@ const photosSchema = new mongoose.Schema({
 const characteristicTypeSchema = new mongoose.Schema({
   id: {
     type: Number,
+    index: true,
   },
   product_id: {
     type: Number,
+    index: true,
   },
   name: {
     type: String,
@@ -78,9 +82,11 @@ const characteristicTypeSchema = new mongoose.Schema({
 const characteristicValueSchema = new mongoose.Schema({
   id: {
     type: Number,
+    index: true,
   },
   characteristic_id: {
     type: Number,
+    index: true,
   },
   value: {
     type: Number,
