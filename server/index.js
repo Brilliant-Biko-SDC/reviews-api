@@ -17,6 +17,10 @@ app.use("/api/reviews", routes);
 
 app.post("/api/reviews", routes);
 
+app.get("/loaderio-bae1cb27e00f112fd1a5c8aae7de8775.txt", (req, res) => {
+  res.send("loaderio-bae1cb27e00f112fd1a5c8aae7de8775");
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
